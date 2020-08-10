@@ -9,7 +9,11 @@ import { EditBookComponent } from './book/edit-book/edit-book.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ApiService } from "./service/api.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { fakeBackendProvider } from './_helpers/fake-backend';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     ListBookComponent,
     AddBookComponent,
     EditBookComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
