@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from "../service/account.service";
+import { NotificationService } from '../service/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +47,12 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          alert('Register success!');
+          this.notificationService.showSuccess("Register success!", "Notification");
           this.router.navigate(['../login'], { relativeTo: this.route });
         },
         error => {
           this.loading = false;
-          alert(error);
+          this.notificationService.showError(error, "Notification");
         });
   }
 }

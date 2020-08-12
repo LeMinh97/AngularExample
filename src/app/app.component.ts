@@ -17,4 +17,5 @@ export class AppComponent {
   logout() {
     this.accountService.logout();
   }
+
 }
