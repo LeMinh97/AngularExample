@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component"
 import { AuthGuard } from './_helpers/auth.guard';
+import { UploadImageComponent } from "./upload-image/upload-image.component";
 
 const routes: Routes = [
   { path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard] },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: '', component: ListBookComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'upload', component: UploadImageComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: PageNotFoundComponent }
 ];
