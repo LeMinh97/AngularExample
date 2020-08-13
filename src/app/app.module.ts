@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 
+import { JwPaginationModule } from 'jw-angular-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    JwPaginationModule
   ],
   providers: [
     ApiService,

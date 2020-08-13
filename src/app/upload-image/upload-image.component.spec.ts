@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadImageComponent } from './upload-image.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('UploadImageComponent', () => {
   let component: UploadImageComponent;
@@ -8,9 +10,13 @@ describe('UploadImageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadImageComponent ]
+      imports: [
+        HttpClientTestingModule,
+        ToastrModule.forRoot()
+      ],
+      declarations: [UploadImageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
