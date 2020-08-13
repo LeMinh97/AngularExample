@@ -10,6 +10,8 @@ import { Book } from "../../model/book.model";
 })
 export class ListBookComponent implements OnInit {
   books: Book[];
+  pageOfItems: Array<any>;
+
   constructor(private router: Router, private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -36,4 +38,9 @@ export class ListBookComponent implements OnInit {
   addBook(): void {
     this.router.navigate(['add-book']);
   };
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+  }
 }

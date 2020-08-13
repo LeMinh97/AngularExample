@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
 import { Book } from "../../model/book.model";
 import { ApiService } from "../../service/api.service";
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -13,7 +14,7 @@ import { ApiService } from "../../service/api.service";
 export class EditBookComponent implements OnInit {
   book: Book;
   editForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     let bookID = window.localStorage.getItem("editbookID");
@@ -42,11 +43,11 @@ export class EditBookComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          alert('Book updated successfully.');
+          this.notificationService.showSuccess("Updated success!", "Notification");
           this.router.navigate(['list-book']);
         },
         error => {
-          alert(error);
+          this.notificationService.showError(error, "Notification");
         });
   }
 }

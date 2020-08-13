@@ -1,16 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditBookComponent } from './edit-book.component';
+import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
-import { By } from '@angular/platform-browser';
 
-describe('EditBookComponent', () => {
-  let component: EditBookComponent;
-  let fixture: ComponentFixture<EditBookComponent>;
-  let element: HTMLElement;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -20,17 +18,20 @@ describe('EditBookComponent', () => {
         HttpClientTestingModule,
         ToastrModule.forRoot()
       ],
-      declarations: [EditBookComponent]
+      declarations: [RegisterComponent]
     })
       .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditBookComponent);
-    component = fixture.debugElement.componentInstance;
-  });
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(RegisterComponent);
+  //   component = fixture.componentInstance;
+  //   fixture.detectChanges();
+  // });
 
   it('should create', () => {
+    fixture = TestBed.createComponent(RegisterComponent);
+    component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });
