@@ -20,7 +20,7 @@ export class EditBookComponent implements OnInit {
     let bookID = window.localStorage.getItem("editbookID");
     if (!bookID) {
       alert("Invalid action.")
-      this.router.navigate(['list-book']);
+      this.router.navigate(['../']);
       return;
     }
     this.editForm = this.formBuilder.group({
@@ -44,7 +44,7 @@ export class EditBookComponent implements OnInit {
       .subscribe(
         data => {
           this.notificationService.showSuccess("Updated success!", "Notification");
-          this.router.navigate(['list-book']);
+          this.router.navigate(['../']);
         },
         error => {
           this.notificationService.showError(error, "Notification");

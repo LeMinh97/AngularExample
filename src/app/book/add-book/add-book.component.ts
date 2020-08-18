@@ -41,7 +41,7 @@ export class AddBookComponent implements OnInit {
     this.apiService.createBook(this.addForm.value)
       .subscribe(data => {
         this.notificationService.showSuccess("Added success!", "Notification");
-        this.router.navigate(['list-book']);
+        this.router.navigate(['../']);
       },
         error => {
           this.loading = false;
