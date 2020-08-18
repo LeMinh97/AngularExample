@@ -32,11 +32,11 @@ export class ListBookComponent implements OnInit {
   editBook(id: number): void {
     window.localStorage.removeItem("editbookID");
     window.localStorage.setItem("editbookID", id.toString());
-    this.router.navigate(['edit-book/' + id]);
+    this.router.navigate(['../book/edit-book/' + id]);
   };
 
   addBook(): void {
-    this.router.navigate(['add-book']);
+    this.router.navigate(['../book/add-book']);
   };
 
   onChangePage(pageOfItems: Array<any>) {

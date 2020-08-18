@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['list-book']);
+          this.router.navigate(['/']);
         },
         error => {
           this.loading = false;

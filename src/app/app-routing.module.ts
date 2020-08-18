@@ -10,13 +10,32 @@ import { AuthGuard } from './_helpers/auth.guard';
 import { UploadImageComponent } from "./upload-image/upload-image.component";
 
 const routes: Routes = [
-  { path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard] },
-  { path: 'list-book', component: ListBookComponent },
-  { path: 'edit-book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
   { path: '', component: ListBookComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'upload', component: UploadImageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'book',
+    children: [
+      {
+        path: '',
+        redirectTo: 'list-book',
+        pathMatch: 'full'
+      },
+      {
+        path: 'list-book',
+        component: ListBookComponent
+      },
+      {
+        path: 'add-book',
+        component: AddBookComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'edit-book/:id',
+        component: EditBookComponent, canActivate: [AuthGuard]
+      }
+    ]
+  },
 
   { path: '**', component: PageNotFoundComponent }
 ];
