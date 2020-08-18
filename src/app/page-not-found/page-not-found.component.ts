@@ -14,6 +14,6 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   goListBook(): void {
-    this.router.navigate(['list-book']);
+    this.router.navigate(['../']);
   };
 }
