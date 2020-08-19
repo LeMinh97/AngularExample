@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ApiService } from "../../service/api.service";
 import { Book } from "../../model/book.model";
+import { AccountService } from '../../service/account.service';
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-list-book',
@@ -12,7 +14,7 @@ export class ListBookComponent implements OnInit {
   books: Book[];
   pageOfItems: Array<any>;
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private accountService: AccountService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.apiService.getBooks()
@@ -22,11 +24,17 @@ export class ListBookComponent implements OnInit {
   }
 
   deleteBook(id: number): void {
-    this.apiService.deleteBook(id)
-      .subscribe(data => {
-        this.books = this.books.filter(b => b.id !== id);
-        console.log(data);
-      })
+    const user = this.accountService.userValue;
+    if (user) {
+      this.apiService.deleteBook(id)
+        .subscribe(data => {
+          this.books = this.books.filter(b => b.id !== id);
+          this.notificationService.showSuccess("Deleted success!", "Notification");
+        },
+          error => {
+            this.notificationService.showError(error, "Notification");
+          });
+    } else this.router.navigate(['../account/login']);
   };
 
   editBook(id: number): void {
